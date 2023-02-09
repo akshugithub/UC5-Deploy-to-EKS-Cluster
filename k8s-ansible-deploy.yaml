@@ -1,4 +1,4 @@
-- hosts: local
+  hosts: local
   gather_facts: false
   tasks:
     # Create namespace.
