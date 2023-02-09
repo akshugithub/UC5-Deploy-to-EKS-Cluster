@@ -1,58 +1,58 @@
 ---
- - hosts: localhost
-   gather_facts: no
-   tasks:
-    # Create namespace.
-    - name: Create namespace
-      k8s:
-        state: present
-        definition:
-          apiVersion: v1
-          kind: Namespace
-          metadata:
-            name: springboot-app     
-    # Create Kubernetes 
-    - name: Create a Deployment
-      k8s:
-        state: present
-        definition:
-          apiVersion: apps/v1
-          kind: Deployment
-          metadata:
-            name: springboot-app
-            namespace: springboot-app
-            labels:
-              app: springboot-app
-          spec:
-            replicas: 4
-            selector:
-              matchLabels:
-                app: springboot-app
-            template:
-              metadata:
-                labels:
-                  app: springboot-app
-              spec:
-                containers:
-                  - name: springboot-app
-                    image: 005763660661.dkr.ecr.ap-south-1.amazonaws.com/uc5-ecr:latest
-                    ports:
-                    - containerPort: 8080 
-    - name: Create a Service
-      k8s:
-        state: present
-        definition:
-          apiVersion: v1
-          kind: Service
-          metadata:
-            name: springboot-app
-            namespace: springboot-app
-          spec:
-            selector:
-              app: springboot-app
-            type: LoadBalancer
-            ports:
-              - name: http
-                protocol: TCP
-                port: 80
-                targetPort: 8080
+ hosts: localhost
+ gather_facts: no
+ tasks:
+	# create namespace
+	- name: create namespace
+	  k8s:
+	  state: present
+	  definition:
+	  apiVersion: v1
+	  kind: Namespace
+	  metadata:
+	  name: springboot-app
+	# create kubernetes
+	- name: create a deployment
+ 	  k8s:
+	  state: present
+	  definition:
+	  apiVersion: apps/v1
+	  kind: deployment
+	  metadata:
+	  name: springboot-app
+	  namespace: springboot-app
+	  labels:
+	  app: springboot-app
+	  spec:
+	  replicas: 4
+   	  selector:
+	  matchLabels:
+	  app: springboot-app
+	  template:
+	  metadata:
+	  labels:
+	  app: springboot-app
+	  spec:
+	  conatiners:
+            - name: springboot-app
+	      image: 005763660661.dkr.ecr.ap-south-1.amazonaws.com/uc5-ecr:latest
+	      ports:
+  	      - containerPort: 8080
+	  - name: create a service
+	    k8s:
+	    state: present
+	    definition:
+	    apiVersion: v1
+	    kind: Service
+	    metadata:
+	    name: springboot-app
+	    namespace: springboot-app
+	    spec:
+	    selector:
+	    app: springboot-app
+	    type: LoadBalancer
+            ports:
+	      - name: http
+		protocol: TCP
+		port: 80
+		targetport: 8080	 
