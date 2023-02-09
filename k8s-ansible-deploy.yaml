@@ -1,7 +1,7 @@
   ---
   - hosts: local
-  gather_facts: false
-  tasks:
+    gather_facts: false
+    tasks:
     # Create namespace.
     - name: Create namespace
       k8s:
