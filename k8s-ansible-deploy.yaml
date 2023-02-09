@@ -58,4 +58,4 @@
               - name: http
                 protocol: TCP
                 port: 80
-                target
+                targetPort:8080
