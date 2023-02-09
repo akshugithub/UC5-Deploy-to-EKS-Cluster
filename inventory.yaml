@@ -1,2 +1,2 @@
 [kubernetes]
-local ansible_user=ec2-user
+localhost ansible_user=ec2-user
