@@ -1,2 +1,2 @@
 [kubernetes]
-localhost ansible_user=ubuntu
+172.31.47.54 ansible_user=ubuntu
