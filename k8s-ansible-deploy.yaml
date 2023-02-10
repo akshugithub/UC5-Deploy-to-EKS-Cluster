@@ -2,6 +2,15 @@
 - hosts: localhost
   gather_facts: no
   tasks:
+    # Create namespace.
+    - name: Create namespace
+      k8s:
+        state: present
+        definition:
+          apiVersion: v1
+          kind: Namespace
+          metadata:
+            name: springboot-app
     # Create Kubernetes 
     - name: Create a Deployment
       k8s:
