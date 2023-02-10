@@ -1,13 +1,7 @@
 ---
 - hosts: localhost
   gather_facts: no
-  tasks:
-    - name: install pre-requisites
-      pip:
-        name:
-          - openshift
-          - pyyaml
-          - kubernetes 
+  tasks: 
     # Create Kubernetes 
     - name: Create a Deployment
       k8s:
